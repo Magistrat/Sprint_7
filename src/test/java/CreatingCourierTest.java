@@ -10,18 +10,24 @@ import static com.storage.SettingsInterface.*;
 
 
 public class CreatingCourierTest {
+    private String generatedTestLogin;
+    private String generatedTestPassword;
+    private String generatedTestFirstName;
 
     @Before
     public void setUp(){
         RestAssured.baseURI = BASE_URL;
+        generatedTestLogin = generateTestData("login");
+        generatedTestPassword = generateTestData("password");
+        generatedTestFirstName = generateTestData("firstName");
     }
 
     @Test
     public void createCourierPositiveTest(){
         PositiveCreateCourierRequestPojo positiveCourier = new PositiveCreateCourierRequestPojo(
-                generateTestData("login"),
-                generateTestData("password"),
-                generateTestData("firstName")
+                generatedTestLogin,
+                generatedTestPassword,
+                generatedTestFirstName
         );
 
         Response response = sendByPost(CREATED_COURIER_URL, positiveCourier);
@@ -32,8 +38,8 @@ public class CreatingCourierTest {
     @Test
     public void createCourierNegativeWithoutFirstNameTest(){
         NegativeWithoutFirstNameCreateCourierRequestPojo negativeWithoutFirstName = new NegativeWithoutFirstNameCreateCourierRequestPojo(
-                generateTestData("login"),
-                generateTestData("password")
+                generatedTestLogin,
+                generatedTestPassword
         );
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutFirstName);
@@ -44,8 +50,8 @@ public class CreatingCourierTest {
     @Test
     public void createCourierNegativeWithoutLoginTest(){
         NegativeWithoutLoginCreateCourierRequestPojo negativeWithoutLogin = new NegativeWithoutLoginCreateCourierRequestPojo(
-                generateTestData("password"),
-                generateTestData("firstName")
+                generatedTestPassword,
+                generatedTestFirstName
         );
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutLogin);
@@ -56,8 +62,8 @@ public class CreatingCourierTest {
     @Test
     public void createCourierNegativeWithoutPasswordTest(){
         NegativeWithoutPasswordCreateCourierRequestPojo negativeWithoutPassword = new NegativeWithoutPasswordCreateCourierRequestPojo(
-                generateTestData("login"),
-                generateTestData("firstName")
+                generatedTestLogin,
+                generatedTestFirstName
         );
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutPassword);
@@ -67,9 +73,9 @@ public class CreatingCourierTest {
     @Test
     public void createTwoCouriersWithSameData() {
         PositiveCreateCourierRequestPojo positiveCourier = new PositiveCreateCourierRequestPojo(
-                generateTestData("login"),
-                generateTestData("password"),
-                generateTestData("firstName")
+                generatedTestLogin,
+                generatedTestPassword,
+                generatedTestFirstName
         );
 
         sendByPost(CREATED_COURIER_URL, positiveCourier);
