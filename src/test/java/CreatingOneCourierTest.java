@@ -1,4 +1,6 @@
+import com.storage.pojo.courier.create.PositiveWithoutFirstNameCourierRequestPojo;
 import com.storage.pojo.courier.create.NegativeWithoutLoginCourierRequestPojo;
+import com.storage.pojo.courier.create.NegativeWithoutPasswordCourierRequestPojo;
 import com.storage.pojo.courier.create.PositiveCourierRequestPojo;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -34,6 +36,18 @@ public class CreatingOneCourierTest {
     }
 
     @Test
+    public void createCourierPositiveWithoutFirstNameTest(){
+        PositiveWithoutFirstNameCourierRequestPojo negativeWithoutFirstName = new PositiveWithoutFirstNameCourierRequestPojo(
+                generateTestData("login"),
+                generateTestData("password")
+        );
+
+        Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutFirstName);
+        checkResponseStatusCode(response, CREATED_STATUS_CODE);
+        checkResponseBodyForCourierPositive(response);
+    }
+
+    @Test
     public void createCourierNegativeWithoutLoginTest(){
         NegativeWithoutLoginCourierRequestPojo negativeWithoutLogin = new NegativeWithoutLoginCourierRequestPojo(
                 generateTestData("password"),
@@ -41,6 +55,18 @@ public class CreatingOneCourierTest {
         );
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutLogin);
+        checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
+        checkResponseBodyForCourierNegative(response);
+    }
+
+    @Test
+    public void createCourierNegativeWithoutPasswordTest(){
+        NegativeWithoutPasswordCourierRequestPojo negativeWithoutPassword = new NegativeWithoutPasswordCourierRequestPojo(
+                generateTestData("login"),
+                generateTestData("firstName")
+        );
+
+        Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutPassword);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
         checkResponseBodyForCourierNegative(response);
     }
