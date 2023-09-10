@@ -1,5 +1,6 @@
 package com.storage;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.instanceOf;
 
 public class RestAssuredMethods {
+    @Step("Отправка запроса на API методом POST")
     public static Response sendByPost(String url, Object body){
         return given()
                 .header(CONTENT_TYPE, APPLICATION_JSON)
@@ -21,6 +23,7 @@ public class RestAssuredMethods {
                 .post(url);
     }
 
+    @Step("Отправка запроса на API методом GET (без тела запроса)")
     public static Response sendByGetWithEmptyBody(String url){
         return given()
                 .header(CONTENT_TYPE, APPLICATION_JSON)
@@ -28,50 +31,59 @@ public class RestAssuredMethods {
                 .get(url);
     }
 
+    @Step("Проверка статус кода с ожидаемым")
     public static void checkResponseStatusCode(Response response, int statusCode){
         response.then().statusCode(statusCode);
     }
 
+    @Step("Успешно создан Курьер")
     public static void checkResponseBodyForCourierCreatePositive(Response response){
         response.then().assertThat().body("ok", equalTo(true));
     }
 
+    @Step("Недостаточно данных для создания учетной записи")
     public static void checkResponseBodyForCourierCreateNegative(Response response){
         response.then().assertThat()
                 .body("code", equalTo(BAD_REQUEST_STATUS_CODE))
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
 
+    @Step("Этот логин уже используется")
     public static void checkResponseBodyForCourierCreateNegativeAlreadyExists(Response response){
         response.then().assertThat()
                 .body("code", equalTo(CONFLICT_STATUS_CODE))
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
     }
 
+    @Step("Успешная аутентификация курьера")
     public static void checkResponseBodyForCourierLoginPositive(Response response){
         response.then().assertThat()
                 .body("id", notNullValue())
                 .body("id", is(instanceOf(Number.class)));
     }
 
+    @Step("Учетная запись не найдена")
     public static void checkResponseBodyForCourierLoginNegativeWrongPasswordAndLogin(Response response){
         response.then().assertThat()
                 .body("code", equalTo(NOT_FOUND_STATUS_CODE))
                 .body("message", equalTo("Учетная запись не найдена"));
     }
 
+    @Step("Недостаточно данных для входа")
     public static void checkResponseBodyForCourierLoginNegativeWithoutPasswordAndLogin(Response response){
         response.then().assertThat()
                 .body("code", equalTo(BAD_REQUEST_STATUS_CODE))
                 .body("message", equalTo("Недостаточно данных для входа"));
     }
 
+    @Step("Создан заказ с заданым цветом")
     public static void checkResponseBodyForOrderCreatePositive(Response response){
         response.then().assertThat()
                 .body("track", notNullValue())
                 .body("track", is(instanceOf(Number.class)));
     }
 
+    @Step("Получен список заказов (без тела при запросе)")
     public static void checkResponseBodyForOrderList(Response response){
         response.then().assertThat()
                 .body("orders", notNullValue())

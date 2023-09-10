@@ -1,4 +1,5 @@
 import com.storage.pojo.order.create.PositiveCreateOrderPojo;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;
@@ -45,8 +46,8 @@ public class CreatingOrderTest {
     }
 
     @Test
+    @DisplayName("Создание Заказа с разным значением colors")
     public void createOrderWithAllColors(){
-        System.out.println();
         Response response = sendByPost(CREATED_ORDER_URL, createOrder);
         checkResponseStatusCode(response, CREATED_STATUS_CODE);
         checkResponseBodyForOrderCreatePositive(response);

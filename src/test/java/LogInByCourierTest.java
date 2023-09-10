@@ -1,5 +1,7 @@
 import com.storage.pojo.courier.create.PositiveCreateCourierRequestPojo;
 import com.storage.pojo.courier.login.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;
@@ -25,6 +27,7 @@ public class LogInByCourierTest {
     }
 
     @Test
+    @DisplayName("Аутентификация курьера")
     public void loginByCourierPositiveTest(){
         PositiveLogInCourierRequestPojo positiveLogIn = new PositiveLogInCourierRequestPojo(
                 positiveCourier.getLogin(),
@@ -37,6 +40,7 @@ public class LogInByCourierTest {
     }
 
     @Test
+    @DisplayName("Негативный. Аутентификация курьера с неправильно указанным паролем")
     public void loginByCourierNegativeWrongPasswordTest(){
         PositiveLogInCourierRequestPojo negativeWrongPassword = new PositiveLogInCourierRequestPojo(
                 positiveCourier.getLogin(),
@@ -49,6 +53,7 @@ public class LogInByCourierTest {
     }
 
     @Test
+    @DisplayName("Негативный. Аутентификация курьера с неправильно указанным логином")
     public void loginByCourierNegativeWrongLoginTest(){
         PositiveLogInCourierRequestPojo negativeWrongLogin = new PositiveLogInCourierRequestPojo(
                 positiveCourier.getLogin() + positiveCourier.getLogin(),
@@ -61,6 +66,7 @@ public class LogInByCourierTest {
     }
 
     @Test
+    @DisplayName("Негативный. Аутентификация курьера без логина")
     public void loginByCourierNegativeWithoutLoginTest(){
         NegativeWithoutLoginLogInCourierRequestPojo negativeWithoutLogin =
                 new NegativeWithoutLoginLogInCourierRequestPojo(
@@ -73,6 +79,8 @@ public class LogInByCourierTest {
     }
 
     @Test
+    @DisplayName("Негативный. Аутентификация курьера без пароля")
+    @Description("Падает по причине бага в API")
     public void loginByCourierNegativeWithoutPasswordTest(){
         NegativeWithoutPasswordLogInCourierRequestPojo negativeWithoutPassword =
                 new NegativeWithoutPasswordLogInCourierRequestPojo(

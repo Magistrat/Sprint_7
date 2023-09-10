@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;
@@ -13,6 +14,7 @@ public class ListOrdersTest {
     }
 
     @Test
+    @DisplayName("Получение списка заказов без Тела при запросе")
     public void getListOrdersWithEmptyBody(){
         Response response = sendByGetWithEmptyBody(GET_ORDERS_URL);
         checkResponseStatusCode(response, SUCCESS_STATUS_CODE);

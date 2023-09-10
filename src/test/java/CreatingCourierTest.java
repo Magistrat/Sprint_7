@@ -1,4 +1,6 @@
 import com.storage.pojo.courier.create.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;
@@ -23,6 +25,7 @@ public class CreatingCourierTest {
     }
 
     @Test
+    @DisplayName("Создание Курьера")
     public void createCourierPositiveTest(){
         PositiveCreateCourierRequestPojo positiveCourier = new PositiveCreateCourierRequestPojo(
                 generatedTestLogin,
@@ -36,6 +39,8 @@ public class CreatingCourierTest {
     }
 
     @Test
+    @DisplayName("Негативный. Создание Курьера без FirstName")
+    @Description("Падает по причине бага в API")
     public void createCourierNegativeWithoutFirstNameTest(){
         NegativeWithoutFirstNameCreateCourierRequestPojo negativeWithoutFirstName = new NegativeWithoutFirstNameCreateCourierRequestPojo(
                 generatedTestLogin,
@@ -48,6 +53,7 @@ public class CreatingCourierTest {
     }
 
     @Test
+    @DisplayName("Негативный. Создание Курьера без Login")
     public void createCourierNegativeWithoutLoginTest(){
         NegativeWithoutLoginCreateCourierRequestPojo negativeWithoutLogin = new NegativeWithoutLoginCreateCourierRequestPojo(
                 generatedTestPassword,
@@ -60,6 +66,7 @@ public class CreatingCourierTest {
     }
 
     @Test
+    @DisplayName("Негативный. Создание Курьера без Password")
     public void createCourierNegativeWithoutPasswordTest(){
         NegativeWithoutPasswordCreateCourierRequestPojo negativeWithoutPassword = new NegativeWithoutPasswordCreateCourierRequestPojo(
                 generatedTestLogin,
@@ -71,6 +78,7 @@ public class CreatingCourierTest {
         checkResponseBodyForCourierCreateNegative(response);
     }
     @Test
+    @DisplayName("Негативный. Создание Курьера с данными существующего курера")
     public void createTwoCouriersWithSameData() {
         PositiveCreateCourierRequestPojo positiveCourier = new PositiveCreateCourierRequestPojo(
                 generatedTestLogin,
