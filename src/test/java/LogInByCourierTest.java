@@ -1,4 +1,4 @@
-import com.storage.pojo.courier.create.PositiveCourierRequestPojo;
+import com.storage.pojo.courier.create.PositiveCreateCourierRequestPojo;
 import io.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class LogInByCourierTest {
     public void setUp(){
         RestAssured.baseURI = BASE_URL;
 
-        PositiveCourierRequestPojo positiveCourier = new PositiveCourierRequestPojo(
+        PositiveCreateCourierRequestPojo positiveCourier = new PositiveCreateCourierRequestPojo(
                 generateTestData("login"),
                 generateTestData("password"),
                 generateTestData("firstName")

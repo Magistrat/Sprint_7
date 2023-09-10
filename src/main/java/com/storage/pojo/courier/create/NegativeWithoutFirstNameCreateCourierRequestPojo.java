@@ -1,17 +1,15 @@
 package com.storage.pojo.courier.create;
 
-public class PositiveCourierRequestPojo {
+public class NegativeWithoutFirstNameCreateCourierRequestPojo {
     private String login;
     private String password;
-    private String firstName;
 
-    public PositiveCourierRequestPojo(String login, String password, String firstName){
+    public NegativeWithoutFirstNameCreateCourierRequestPojo(String login, String password){
         this.login = login;
         this.password = password;
-        this.firstName = firstName;
     }
 
-    public PositiveCourierRequestPojo(){}
+    public NegativeWithoutFirstNameCreateCourierRequestPojo(){}
 
     public String getLogin() {
         return login;
@@ -28,13 +26,4 @@ public class PositiveCourierRequestPojo {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
 }

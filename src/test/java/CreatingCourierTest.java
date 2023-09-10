@@ -18,7 +18,7 @@ public class CreatingCourierTest {
 
     @Test
     public void createCourierPositiveTest(){
-        PositiveCourierRequestPojo positiveCourier = new PositiveCourierRequestPojo(
+        PositiveCreateCourierRequestPojo positiveCourier = new PositiveCreateCourierRequestPojo(
                 generateTestData("login"),
                 generateTestData("password"),
                 generateTestData("firstName")
@@ -31,7 +31,7 @@ public class CreatingCourierTest {
 
     @Test
     public void createCourierNegativeWithoutFirstNameTest(){
-        NegativeWithoutFirstNameCourierRequestPojo negativeWithoutFirstName = new NegativeWithoutFirstNameCourierRequestPojo(
+        NegativeWithoutFirstNameCreateCourierRequestPojo negativeWithoutFirstName = new NegativeWithoutFirstNameCreateCourierRequestPojo(
                 generateTestData("login"),
                 generateTestData("password")
         );
@@ -43,7 +43,7 @@ public class CreatingCourierTest {
 
     @Test
     public void createCourierNegativeWithoutLoginTest(){
-        NegativeWithoutLoginCourierRequestPojo negativeWithoutLogin = new NegativeWithoutLoginCourierRequestPojo(
+        NegativeWithoutLoginCreateCourierRequestPojo negativeWithoutLogin = new NegativeWithoutLoginCreateCourierRequestPojo(
                 generateTestData("password"),
                 generateTestData("firstName")
         );
@@ -55,7 +55,7 @@ public class CreatingCourierTest {
 
     @Test
     public void createCourierNegativeWithoutPasswordTest(){
-        NegativeWithoutPasswordCourierRequestPojo negativeWithoutPassword = new NegativeWithoutPasswordCourierRequestPojo(
+        NegativeWithoutPasswordCreateCourierRequestPojo negativeWithoutPassword = new NegativeWithoutPasswordCreateCourierRequestPojo(
                 generateTestData("login"),
                 generateTestData("firstName")
         );
@@ -66,7 +66,7 @@ public class CreatingCourierTest {
     }
     @Test
     public void createTwoCouriersWithSameData() {
-        PositiveCourierRequestPojo positiveCourier = new PositiveCourierRequestPojo(
+        PositiveCreateCourierRequestPojo positiveCourier = new PositiveCreateCourierRequestPojo(
                 generateTestData("login"),
                 generateTestData("password"),
                 generateTestData("firstName")
