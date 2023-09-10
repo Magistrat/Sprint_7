@@ -1,8 +1,10 @@
 import com.storage.pojo.courier.create.*;
+import com.storage.pojo.courier.login.PositiveLogInCourierRequestPojo;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -91,6 +93,17 @@ public class CreatingCourierTest {
 
         checkResponseStatusCode(response, CONFLICT_STATUS_CODE);
         checkResponseBodyForCourierCreateNegativeAlreadyExists(response);
+    }
+
+    @After
+    public void deleteCourier(){
+        PositiveLogInCourierRequestPojo positiveLogIn = new PositiveLogInCourierRequestPojo(
+                generatedTestLogin,
+                generatedTestPassword
+        );
+        sendByDeleteWithParamId(
+                DELETE_COURIER_URL + "/" + loginResponseDeserialization(LOG_IN_BY_COURIER_URL, positiveLogIn).getId()
+        );
     }
 
 }

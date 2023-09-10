@@ -1,5 +1,6 @@
 package com.storage;
 
+import com.storage.pojo.courier.login.LoginCourierResponsePojo;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
@@ -29,6 +30,19 @@ public class RestAssuredMethods {
                 .header(CONTENT_TYPE, APPLICATION_JSON)
                 .when()
                 .get(url);
+    }
+
+    @Step("Login. Десериализация ответа")
+    public static LoginCourierResponsePojo loginResponseDeserialization(String url, Object body){
+        return sendByPost(url, body).as(LoginCourierResponsePojo.class);
+    }
+
+    @Step("Удаление Курьера по ID")
+    public static void sendByDeleteWithParamId(String url){
+        given()
+                .header(CONTENT_TYPE, APPLICATION_JSON)
+                .when()
+                .delete(url);
     }
 
     @Step("Проверка статус кода с ожидаемым")

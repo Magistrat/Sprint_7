@@ -4,6 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -90,6 +91,17 @@ public class LogInByCourierTest {
         Response response = sendByPost(LOG_IN_BY_COURIER_URL, negativeWithoutPassword);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
         checkResponseBodyForCourierLoginNegativeWithoutPasswordAndLogin(response);
+    }
+
+    @After
+    public void deleteCourier(){
+        PositiveLogInCourierRequestPojo positiveLogIn = new PositiveLogInCourierRequestPojo(
+                positiveCourier.getLogin(),
+                positiveCourier.getPassword()
+        );
+        sendByDeleteWithParamId(
+                DELETE_COURIER_URL + "/" + loginResponseDeserialization(LOG_IN_BY_COURIER_URL, positiveLogIn).getId()
+        );
     }
 
 }
