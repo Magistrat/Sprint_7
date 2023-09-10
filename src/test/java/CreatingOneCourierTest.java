@@ -1,4 +1,4 @@
-import com.storage.pojo.courier.create.PositiveWithoutFirstNameCourierRequestPojo;
+import com.storage.pojo.courier.create.NegativeWithoutFirstNameCourierRequestPojo;
 import com.storage.pojo.courier.create.NegativeWithoutLoginCourierRequestPojo;
 import com.storage.pojo.courier.create.NegativeWithoutPasswordCourierRequestPojo;
 import com.storage.pojo.courier.create.PositiveCourierRequestPojo;
@@ -36,15 +36,15 @@ public class CreatingOneCourierTest {
     }
 
     @Test
-    public void createCourierPositiveWithoutFirstNameTest(){
-        PositiveWithoutFirstNameCourierRequestPojo negativeWithoutFirstName = new PositiveWithoutFirstNameCourierRequestPojo(
+    public void createCourierNegativeWithoutFirstNameTest(){
+        NegativeWithoutFirstNameCourierRequestPojo negativeWithoutFirstName = new NegativeWithoutFirstNameCourierRequestPojo(
                 generateTestData("login"),
                 generateTestData("password")
         );
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutFirstName);
-        checkResponseStatusCode(response, CREATED_STATUS_CODE);
-        checkResponseBodyForCourierPositive(response);
+        checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
+        checkResponseBodyForCourierNegative(response);
     }
 
     @Test
