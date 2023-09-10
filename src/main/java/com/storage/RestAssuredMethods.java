@@ -20,17 +20,17 @@ public class RestAssuredMethods {
         response.then().statusCode(statusCode);
     }
 
-    public static void checkResponseBodyForCourierPositive(Response response){
+    public static void checkResponseBodyForCourierCreatePositive(Response response){
         response.then().assertThat().body("ok", equalTo(true));
     }
 
-    public static void checkResponseBodyForCourierNegative(Response response){
+    public static void checkResponseBodyForCourierCreateNegative(Response response){
         response.then().assertThat()
                 .body("code", equalTo(BAD_REQUEST_STATUS_CODE))
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
 
-    public static void checkResponseBodyForCourierNegativeAlreadyExists(Response response){
+    public static void checkResponseBodyForCourierCreateNegativeAlreadyExists(Response response){
         response.then().assertThat()
                 .body("code", equalTo(CONFLICT_STATUS_CODE))
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));

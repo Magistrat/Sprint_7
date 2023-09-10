@@ -32,7 +32,7 @@ public class CreatingCourierTest {
 
         Response response = sendByPost(CREATED_COURIER_URL, positiveCourier);
         checkResponseStatusCode(response, CREATED_STATUS_CODE);
-        checkResponseBodyForCourierPositive(response);
+        checkResponseBodyForCourierCreatePositive(response);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class CreatingCourierTest {
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutFirstName);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
-        checkResponseBodyForCourierNegative(response);
+        checkResponseBodyForCourierCreateNegative(response);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class CreatingCourierTest {
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutLogin);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
-        checkResponseBodyForCourierNegative(response);
+        checkResponseBodyForCourierCreateNegative(response);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class CreatingCourierTest {
 
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutPassword);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
-        checkResponseBodyForCourierNegative(response);
+        checkResponseBodyForCourierCreateNegative(response);
     }
     @Test
     public void createTwoCouriersWithSameData() {
@@ -82,7 +82,7 @@ public class CreatingCourierTest {
         Response response = sendByPost(CREATED_COURIER_URL, positiveCourier);
 
         checkResponseStatusCode(response, CONFLICT_STATUS_CODE);
-        checkResponseBodyForCourierNegativeAlreadyExists(response);
+        checkResponseBodyForCourierCreateNegativeAlreadyExists(response);
     }
 
 }
