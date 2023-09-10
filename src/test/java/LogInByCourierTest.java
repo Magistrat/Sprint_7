@@ -60,22 +60,28 @@ public class LogInByCourierTest {
         checkResponseBodyForCourierLoginNegativeWrongPasswordAndLogin(response);
     }
 
+    @Test
+    public void loginByCourierNegativeWithoutLoginTest(){
+        NegativeWithoutLoginLogInCourierRequestPojo negativeWithoutLogin =
+                new NegativeWithoutLoginLogInCourierRequestPojo(
+                    positiveCourier.getPassword()
+                );
 
+        Response response = sendByPost(LOG_IN_BY_COURIER_URL, negativeWithoutLogin);
+        checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
+        checkResponseBodyForCourierLoginNegativeWithoutPasswordAndLogin(response);
+    }
 
+    @Test
+    public void loginByCourierNegativeWithoutPasswordTest(){
+        NegativeWithoutPasswordLogInCourierRequestPojo negativeWithoutPassword =
+                new NegativeWithoutPasswordLogInCourierRequestPojo(
+                        positiveCourier.getLogin()
+                );
 
-
-//    @Test
-//    public void loginByCourierNegativeWithoutLoginTest(){
-//        NegativeWithoutLoginLogInCourierRequestPojo negativeWithoutLogin =
-//                new NegativeWithoutLoginLogInCourierRequestPojo(
-//                    positiveCourier.getPassword()
-//                );
-//
-//        Response response = sendByPost(LOG_IN_BY_COURIER_URL, negativeWithoutLogin);
-//        checkResponseStatusCode(response, SUCCESS_STATUS_CODE);
-//        checkResponseBodyForCourierLoginPositive(response);
-//    }
-
-
+        Response response = sendByPost(LOG_IN_BY_COURIER_URL, negativeWithoutPassword);
+        checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
+        checkResponseBodyForCourierLoginNegativeWithoutPasswordAndLogin(response);
+    }
 
 }

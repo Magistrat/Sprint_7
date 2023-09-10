@@ -50,4 +50,11 @@ public class RestAssuredMethods {
                 .body("code", equalTo(NOT_FOUND_STATUS_CODE))
                 .body("message", equalTo("Учетная запись не найдена"));
     }
+
+    public static void checkResponseBodyForCourierLoginNegativeWithoutPasswordAndLogin(Response response){
+        response.then().assertThat()
+                .body("code", equalTo(BAD_REQUEST_STATUS_CODE))
+                .body("message", equalTo("Недостаточно данных для входа"));
+    }
+
 }
