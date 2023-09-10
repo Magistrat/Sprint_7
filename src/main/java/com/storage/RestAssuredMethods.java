@@ -21,7 +21,13 @@ public class RestAssuredMethods {
         response.then().statusCode(statusCode);
     }
 
-    public static void checkResponseBodyForCourier(Response response){
+    public static void checkResponseBodyForCourierPositive(Response response){
         response.then().assertThat().body("ok", equalTo(true));
+    }
+
+    public static void checkResponseBodyForCourierNegative(Response response){
+        response.then().assertThat()
+                .body("code", equalTo(400))
+                .body("message", equalTo("Недостаточно данных для создания учетной записи"));
     }
 }
