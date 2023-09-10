@@ -1,4 +1,4 @@
-import com.storage.pojo.courier.PositiveCourierRequestPojo;
+import com.storage.pojo.courier.create.PositiveCourierRequestPojo;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;

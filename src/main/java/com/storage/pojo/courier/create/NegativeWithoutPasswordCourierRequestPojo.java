@@ -1,4 +1,4 @@
-package com.storage.pojo.courier;
+package com.storage.pojo.courier.create;
 
 public class NegativeWithoutPasswordCourierRequestPojo {
     private String login;
