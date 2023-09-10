@@ -2,6 +2,8 @@ package com.storage;
 
 import io.restassured.response.Response;
 
+import java.util.List;
+
 import static com.storage.SettingsInterface.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,6 +19,13 @@ public class RestAssuredMethods {
                 .body(body)
                 .when()
                 .post(url);
+    }
+
+    public static Response sendByGetWithEmptyBody(String url){
+        return given()
+                .header(CONTENT_TYPE, APPLICATION_JSON)
+                .when()
+                .get(url);
     }
 
     public static void checkResponseStatusCode(Response response, int statusCode){
@@ -61,5 +70,11 @@ public class RestAssuredMethods {
         response.then().assertThat()
                 .body("track", notNullValue())
                 .body("track", is(instanceOf(Number.class)));
+    }
+
+    public static void checkResponseBodyForOrderList(Response response){
+        response.then().assertThat()
+                .body("orders", notNullValue())
+                .body("orders", is(instanceOf(List.class)));
     }
 }
