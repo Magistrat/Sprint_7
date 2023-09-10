@@ -9,7 +9,7 @@ import static com.storage.RestAssuredMethods.*;
 import static com.storage.SettingsInterface.*;
 
 
-public class CreatingOneCourierTest {
+public class CreatingCourierTest {
 
     @Before
     public void setUp(){
@@ -63,6 +63,20 @@ public class CreatingOneCourierTest {
         Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutPassword);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
         checkResponseBodyForCourierNegative(response);
+    }
+    @Test
+    public void createTwoCouriersWithSameData() {
+        PositiveCourierRequestPojo positiveCourier = new PositiveCourierRequestPojo(
+                generateTestData("login"),
+                generateTestData("password"),
+                generateTestData("firstName")
+        );
+
+        sendByPost(CREATED_COURIER_URL, positiveCourier);
+        Response response = sendByPost(CREATED_COURIER_URL, positiveCourier);
+
+        checkResponseStatusCode(response, CONFLICT_STATUS_CODE);
+        checkResponseBodyForCourierNegativeAlreadyExists(response);
     }
 
 }
