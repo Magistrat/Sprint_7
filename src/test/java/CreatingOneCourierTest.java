@@ -28,6 +28,7 @@ public class CreatingOneCourierTest {
 
         Response response = sendByPost(CREATED_COURIER_URL, positiveCourier);
         checkResponseStatusCode(response, CREATED_STATUS_CODE);
+        checkResponseBodyForCourier(response);
     }
 
 }

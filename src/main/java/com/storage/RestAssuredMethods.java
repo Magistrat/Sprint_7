@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import static com.storage.SettingsInterface.APPLICATION_JSON;
 import static com.storage.SettingsInterface.CONTENT_TYPE;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class RestAssuredMethods {
     public static Response sendByPost(String url, Object body){
@@ -20,7 +21,7 @@ public class RestAssuredMethods {
         response.then().statusCode(statusCode);
     }
 
-    public static void checkResponseBodyFor(Response response, int statusCode){
-        response.then().statusCode(statusCode);
+    public static void checkResponseBodyForCourier(Response response){
+        response.then().assertThat().body("ok", equalTo(true));
     }
 }
