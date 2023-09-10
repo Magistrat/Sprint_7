@@ -1,17 +1,17 @@
-package com.storage;
+package com.storage.pojo.courier;
 
-public class CreatingCourierRequestPojo {
+public class PositiveCourierRequestPojo {
     private String login;
     private String password;
     private String firstName;
 
-    public CreatingCourierRequestPojo(String login, String password, String firstName){
+    public PositiveCourierRequestPojo(String login, String password, String firstName){
         this.login = login;
         this.password = password;
         this.firstName = firstName;
     }
 
-    public CreatingCourierRequestPojo(){}
+    public PositiveCourierRequestPojo(){}
 
     public String getLogin() {
         return login;

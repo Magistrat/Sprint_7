@@ -1,4 +1,4 @@
-import com.storage.CreatingCourierRequestPojo;
+import com.storage.pojo.courier.PositiveCourierRequestPojo;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;
@@ -20,7 +20,7 @@ public class CreatingOneCourierTest {
 
     @Test
     public void createCourierPositiveTest(){
-        CreatingCourierRequestPojo positiveCourier = new CreatingCourierRequestPojo(
+        PositiveCourierRequestPojo positiveCourier = new PositiveCourierRequestPojo(
                 generateTestData("login"),
                 generateTestData("password"),
                 generateTestData("firstName")
