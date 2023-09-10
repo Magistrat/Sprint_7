@@ -1,15 +1,15 @@
 package com.storage.pojo.courier.login;
 
-public class PositiveLoginCourierRequestPojo {
+public class PositiveLogInCourierRequestPojo {
     private String login;
     private String password;
 
-    public PositiveLoginCourierRequestPojo(String login, String password){
+    public PositiveLogInCourierRequestPojo(String login, String password){
         this.login = login;
         this.password = password;
     }
 
-    public PositiveLoginCourierRequestPojo(){}
+    public PositiveLogInCourierRequestPojo(){}
 
     public String getLogin() {
         return login;

@@ -25,14 +25,57 @@ public class LogInByCourierTest {
     }
 
     @Test
-    public void loginByCourierPositive(){
-        PositiveLoginCourierRequestPojo positiveLogin = new PositiveLoginCourierRequestPojo(
+    public void loginByCourierPositiveTest(){
+        PositiveLogInCourierRequestPojo positiveLogIn = new PositiveLogInCourierRequestPojo(
                 positiveCourier.getLogin(),
                 positiveCourier.getPassword()
         );
 
-        Response response = sendByPost(LOG_IN_BY_COURIER_URL, positiveLogin);
+        Response response = sendByPost(LOG_IN_BY_COURIER_URL, positiveLogIn);
         checkResponseStatusCode(response, SUCCESS_STATUS_CODE);
         checkResponseBodyForCourierLoginPositive(response);
     }
+
+    @Test
+    public void loginByCourierNegativeWrongPasswordTest(){
+        PositiveLogInCourierRequestPojo negativeWrongPassword = new PositiveLogInCourierRequestPojo(
+                positiveCourier.getLogin(),
+                positiveCourier.getPassword() + positiveCourier.getPassword()
+        );
+
+        Response response = sendByPost(LOG_IN_BY_COURIER_URL, negativeWrongPassword);
+        checkResponseStatusCode(response, NOT_FOUND_STATUS_CODE);
+        checkResponseBodyForCourierLoginNegativeWrongPasswordAndLogin(response);
+    }
+
+    @Test
+    public void loginByCourierNegativeWrongLoginTest(){
+        PositiveLogInCourierRequestPojo negativeWrongLogin = new PositiveLogInCourierRequestPojo(
+                positiveCourier.getLogin() + positiveCourier.getLogin(),
+                positiveCourier.getPassword()
+        );
+
+        Response response = sendByPost(LOG_IN_BY_COURIER_URL, negativeWrongLogin);
+        checkResponseStatusCode(response, NOT_FOUND_STATUS_CODE);
+        checkResponseBodyForCourierLoginNegativeWrongPasswordAndLogin(response);
+    }
+
+
+
+
+
+//    @Test
+//    public void loginByCourierNegativeWithoutLoginTest(){
+//        NegativeWithoutLoginLogInCourierRequestPojo negativeWithoutLogin =
+//                new NegativeWithoutLoginLogInCourierRequestPojo(
+//                    positiveCourier.getPassword()
+//                );
+//
+//        Response response = sendByPost(LOG_IN_BY_COURIER_URL, negativeWithoutLogin);
+//        checkResponseStatusCode(response, SUCCESS_STATUS_CODE);
+//        checkResponseBodyForCourierLoginPositive(response);
+//    }
+
+
+
 }

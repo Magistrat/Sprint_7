@@ -44,4 +44,10 @@ public class RestAssuredMethods {
                 .body("id", notNullValue())
                 .body("id", is(instanceOf(Number.class)));
     }
+
+    public static void checkResponseBodyForCourierLoginNegativeWrongPasswordAndLogin(Response response){
+        response.then().assertThat()
+                .body("code", equalTo(NOT_FOUND_STATUS_CODE))
+                .body("message", equalTo("Учетная запись не найдена"));
+    }
 }
