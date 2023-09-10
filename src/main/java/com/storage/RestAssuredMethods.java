@@ -57,4 +57,9 @@ public class RestAssuredMethods {
                 .body("message", equalTo("Недостаточно данных для входа"));
     }
 
+    public static void checkResponseBodyForOrderCreatePositive(Response response){
+        response.then().assertThat()
+                .body("track", notNullValue())
+                .body("track", is(instanceOf(Number.class)));
+    }
 }

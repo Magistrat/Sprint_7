@@ -8,12 +8,12 @@ public class PositiveCreateOrderPojo {
     private String address;
     private String metroStation;
     private String phone;
-    private String rentTime;
+    private int rentTime;
     private String deliveryDate;
     private String comment;
     private List<String> colors;
 
-    public PositiveCreateOrderPojo(String firstName, String lastName, String address, String metroStation, String phone, String rentTime, String deliveryDate, String comment, List<String> colors) {
+    public PositiveCreateOrderPojo(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, List<String> colors) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -67,11 +67,11 @@ public class PositiveCreateOrderPojo {
         this.phone = phone;
     }
 
-    public String getRentTime() {
+    public int getRentTime() {
         return rentTime;
     }
 
-    public void setRentTime(String rentTime) {
+    public void setRentTime(int rentTime) {
         this.rentTime = rentTime;
     }
 
