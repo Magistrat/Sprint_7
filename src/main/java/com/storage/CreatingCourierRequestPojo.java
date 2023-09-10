@@ -1,17 +1,17 @@
 package com.storage;
 
-public class CreatingCourierRequestJson {
+public class CreatingCourierRequestPojo {
     private String login;
     private String password;
     private String firstName;
 
-    public CreatingCourierRequestJson(String login, String password, String firstName){
+    public CreatingCourierRequestPojo(String login, String password, String firstName){
         this.login = login;
         this.password = password;
         this.firstName = firstName;
     }
 
-    public CreatingCourierRequestJson(){}
+    public CreatingCourierRequestPojo(){}
 
     public String getLogin() {
         return login;
