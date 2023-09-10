@@ -5,6 +5,9 @@ import io.restassured.response.Response;
 import static com.storage.SettingsInterface.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.instanceOf;
 
 public class RestAssuredMethods {
     public static Response sendByPost(String url, Object body){
@@ -34,5 +37,11 @@ public class RestAssuredMethods {
         response.then().assertThat()
                 .body("code", equalTo(CONFLICT_STATUS_CODE))
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
+    }
+
+    public static void checkResponseBodyForCourierLoginPositive(Response response){
+        response.then().assertThat()
+                .body("id", notNullValue())
+                .body("id", is(instanceOf(Number.class)));
     }
 }
