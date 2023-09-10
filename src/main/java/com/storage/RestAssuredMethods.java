@@ -2,8 +2,7 @@ package com.storage;
 
 import io.restassured.response.Response;
 
-import static com.storage.SettingsInterface.APPLICATION_JSON;
-import static com.storage.SettingsInterface.CONTENT_TYPE;
+import static com.storage.SettingsInterface.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -27,7 +26,13 @@ public class RestAssuredMethods {
 
     public static void checkResponseBodyForCourierNegative(Response response){
         response.then().assertThat()
-                .body("code", equalTo(400))
+                .body("code", equalTo(BAD_REQUEST_STATUS_CODE))
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
+    }
+
+    public static void checkResponseBodyForCourierNegativeAlreadyExists(Response response){
+        response.then().assertThat()
+                .body("code", equalTo(CONFLICT_STATUS_CODE))
+                .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
     }
 }

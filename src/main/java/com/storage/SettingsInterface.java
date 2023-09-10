@@ -7,4 +7,5 @@ public interface SettingsInterface {
     public static final String APPLICATION_JSON = "application/json";
     public static final int CREATED_STATUS_CODE = 201;
     public static final int BAD_REQUEST_STATUS_CODE = 400;
+    public static final int CONFLICT_STATUS_CODE = 409;
 }

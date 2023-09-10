@@ -1,7 +1,4 @@
-import com.storage.pojo.courier.create.NegativeWithoutFirstNameCourierRequestPojo;
-import com.storage.pojo.courier.create.NegativeWithoutLoginCourierRequestPojo;
-import com.storage.pojo.courier.create.NegativeWithoutPasswordCourierRequestPojo;
-import com.storage.pojo.courier.create.PositiveCourierRequestPojo;
+import com.storage.pojo.courier.create.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;
@@ -9,10 +6,7 @@ import org.junit.Test;
 
 import static com.storage.Base.generateTestData;
 import static com.storage.RestAssuredMethods.*;
-import static com.storage.SettingsInterface.BAD_REQUEST_STATUS_CODE;
-import static com.storage.SettingsInterface.BASE_URL;
-import static com.storage.SettingsInterface.CREATED_COURIER_URL;
-import static com.storage.SettingsInterface.CREATED_STATUS_CODE;
+import static com.storage.SettingsInterface.*;
 
 
 public class CreatingOneCourierTest {
