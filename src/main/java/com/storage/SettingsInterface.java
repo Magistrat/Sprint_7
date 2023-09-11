@@ -3,10 +3,8 @@ package com.storage;
 public interface SettingsInterface {
     public static final String BASE_URL = "http://qa-scooter.praktikum-services.ru/";
     public static final String CANCEL_ORDER_URL = "/api/v1/orders/cancel";
-    public static final String CREATED_COURIER_URL = "/api/v1/courier";
-    public static final String CREATED_ORDER_URL = "/api/v1/orders";
-    public static final String DELETE_COURIER_URL = "/api/v1/courier";
-    public static final String GET_ORDERS_URL = "/api/v1/orders";
+    public static final String COURIER_URL = "/api/v1/courier";
+    public static final String ORDERS_URL = "/api/v1/orders";
     public static final String LOG_IN_BY_COURIER_URL = "api/v1/courier/login";
     public static final String CONTENT_TYPE = "Content-Type";
     public static final String APPLICATION_JSON = "application/json";

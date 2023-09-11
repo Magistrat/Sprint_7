@@ -16,7 +16,7 @@ public class ListOrdersTest {
     @Test
     @DisplayName("Получение списка заказов без Тела при запросе")
     public void getListOrdersWithEmptyBody(){
-        Response response = sendByGetWithEmptyBody(GET_ORDERS_URL);
+        Response response = sendByGetWithEmptyBody(ORDERS_URL);
         checkResponseStatusCode(response, SUCCESS_STATUS_CODE);
         checkResponseBodyForOrderList(response);
     }

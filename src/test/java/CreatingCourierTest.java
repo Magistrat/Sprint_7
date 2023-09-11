@@ -35,7 +35,7 @@ public class CreatingCourierTest {
                 generatedTestFirstName
         );
 
-        Response response = sendByPost(CREATED_COURIER_URL, positiveCourier);
+        Response response = sendByPost(COURIER_URL, positiveCourier);
         checkResponseStatusCode(response, CREATED_STATUS_CODE);
         checkResponseBodyForCourierCreatePositive(response);
     }
@@ -49,7 +49,7 @@ public class CreatingCourierTest {
                 generatedTestPassword
         );
 
-        Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutFirstName);
+        Response response = sendByPost(COURIER_URL, negativeWithoutFirstName);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
         checkResponseBodyForCourierCreateNegative(response);
     }
@@ -62,7 +62,7 @@ public class CreatingCourierTest {
                 generatedTestFirstName
         );
 
-        Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutLogin);
+        Response response = sendByPost(COURIER_URL, negativeWithoutLogin);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
         checkResponseBodyForCourierCreateNegative(response);
     }
@@ -75,7 +75,7 @@ public class CreatingCourierTest {
                 generatedTestFirstName
         );
 
-        Response response = sendByPost(CREATED_COURIER_URL, negativeWithoutPassword);
+        Response response = sendByPost(COURIER_URL, negativeWithoutPassword);
         checkResponseStatusCode(response, BAD_REQUEST_STATUS_CODE);
         checkResponseBodyForCourierCreateNegative(response);
     }
@@ -88,8 +88,8 @@ public class CreatingCourierTest {
                 generatedTestFirstName
         );
 
-        sendByPost(CREATED_COURIER_URL, positiveCourier);
-        Response response = sendByPost(CREATED_COURIER_URL, positiveCourier);
+        sendByPost(COURIER_URL, positiveCourier);
+        Response response = sendByPost(COURIER_URL, positiveCourier);
 
         checkResponseStatusCode(response, CONFLICT_STATUS_CODE);
         checkResponseBodyForCourierCreateNegativeAlreadyExists(response);
@@ -102,7 +102,7 @@ public class CreatingCourierTest {
                 generatedTestPassword
         );
         sendByDeleteWithParamId(
-                DELETE_COURIER_URL + "/" + loginResponseDeserialization(LOG_IN_BY_COURIER_URL, positiveLogIn).getId()
+                COURIER_URL + "/" + loginResponseDeserialization(LOG_IN_BY_COURIER_URL, positiveLogIn).getId()
         );
     }
 

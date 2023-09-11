@@ -24,7 +24,7 @@ public class LogInByCourierTest {
                 generateTestData("password"),
                 generateTestData("firstName")
         );
-        sendByPost(CREATED_COURIER_URL, positiveCourier);
+        sendByPost(COURIER_URL, positiveCourier);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class LogInByCourierTest {
                 positiveCourier.getPassword()
         );
         sendByDeleteWithParamId(
-                DELETE_COURIER_URL + "/" + loginResponseDeserialization(LOG_IN_BY_COURIER_URL, positiveLogIn).getId()
+                COURIER_URL + "/" + loginResponseDeserialization(LOG_IN_BY_COURIER_URL, positiveLogIn).getId()
         );
     }
 

@@ -50,7 +50,7 @@ public class CreatingOrderTest {
     @Test
     @DisplayName("Создание Заказа с разным значением colors")
     public void createOrderWithAllColors(){
-        response = sendByPost(CREATED_ORDER_URL, createOrder);
+        response = sendByPost(ORDERS_URL, createOrder);
         checkResponseStatusCode(response, CREATED_STATUS_CODE);
         checkResponseBodyForOrderCreatePositive(response);
     }
