@@ -1,6 +1,8 @@
 package com.storage;
 
 import com.storage.pojo.courier.login.LoginCourierResponsePojo;
+import com.storage.pojo.order.cancel.CancelOrderPojo;
+import com.storage.pojo.order.create.CreateOrderResponsePojo;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
@@ -43,6 +45,16 @@ public class RestAssuredMethods {
                 .header(CONTENT_TYPE, APPLICATION_JSON)
                 .when()
                 .delete(url);
+    }
+
+    @Step("Получение track и отмена заказа")
+    public static void cancelOrderByResponse(Response response){
+        given()
+                .header(CONTENT_TYPE, APPLICATION_JSON)
+                .and()
+                .body(new CancelOrderPojo(response.as(CreateOrderResponsePojo.class).getTrack()))
+                .when()
+                .put(CANCEL_ORDER_URL);
     }
 
     @Step("Проверка статус кода с ожидаемым")

@@ -1,7 +1,8 @@
-import com.storage.pojo.order.create.PositiveCreateOrderPojo;
+import com.storage.pojo.order.create.*;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,7 @@ public class CreatingOrderTest {
         };
     }
     private final PositiveCreateOrderPojo createOrder;
+    Response response;
 
     public CreatingOrderTest(List<String> colors){
         this.createOrder = new PositiveCreateOrderPojo(
@@ -48,8 +50,13 @@ public class CreatingOrderTest {
     @Test
     @DisplayName("Создание Заказа с разным значением colors")
     public void createOrderWithAllColors(){
-        Response response = sendByPost(CREATED_ORDER_URL, createOrder);
+        response = sendByPost(CREATED_ORDER_URL, createOrder);
         checkResponseStatusCode(response, CREATED_STATUS_CODE);
         checkResponseBodyForOrderCreatePositive(response);
+    }
+
+    @After
+    public void cancelOrder(){
+        cancelOrderByResponse(response);
     }
 }
